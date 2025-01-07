@@ -1,0 +1,68 @@
+:root {
+  font-family: Inter, sans-serif;
+
+  --back-colour0: #111112;
+  --back-colour1: #1d1d1f;
+  --back-colour2: #2c2c2e;
+
+  --text-colour0: #f6f6e3;
+  --text-colour1: #e0e3ca;
+  --text-colour2: #c1c6ac;
+
+  --icon-colour0: #7572dc;
+
+  --text-light0: #f2e0fb;
+  --text-light1: #a193ad;
+  --text-light2: #a386bc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  padding: 0px;
+  margin: 0px;
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column; 
+}
+
+#root {
+  flex-grow: 1;
+  display: flex;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+input, button, textarea {
+  font-family: Inter, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.app {
+  display: flex;
+  flex-grow: 1;
+}
