@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import compStyles from "./components.module.css";
 
 const Dropdown = ({ options, selectedIdx, setSelectedIdx }) => {
@@ -32,3 +33,9 @@ const Dropdown = ({ options, selectedIdx, setSelectedIdx }) => {
 };
 
 export default Dropdown;
+
+Dropdown.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedIdx: PropTypes.number.isRequired,
+  setSelectedIdx: PropTypes.func.isRequired,
+}

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import compStyles from "./components.module.css";
-
+import PropTypes from "prop-types";
 import { useAuth } from "../context/AuthContext";
 import { timeAgo } from "../lib/util";
 import PostStats from "./PostStats";
@@ -83,3 +83,16 @@ const PostDetailCard = ({ post }) => {
 };
 
 export default PostDetailCard;
+PostDetailCard.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    author_id: PropTypes.number.isRequired,
+    author_name: PropTypes.string.isRequired,
+    caption: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    image_name: PropTypes.string.isRequired,
+    image_type: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    created_at_ts: PropTypes.string.isRequired,
+  }).isRequired,
+};

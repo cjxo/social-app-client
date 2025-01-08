@@ -46,13 +46,33 @@ const AuthProvider = ({ children }) => {
       setProfileBuffer(downloaded);
     }
   };
-
-  useState(() => {
+    
+  const signOut = async () => {
+    api.user.signOut();
+    setIsAuth(false);
+    navigate("/sign-in");
+  };
+   
+  useEffect(() => {
     const checkAuth = async () => {
       const result = await api.user.isAuth();
-      if (result.ok) {
-        setIsAuth(true);
-        await setTheUser(result.user);
+      if (result.ok && (result.remainingTime > 0)) {
+        const bufferTime = 10;
+        const reloadTime = (result.remainingTime - bufferTime) * 1000;
+
+        if (reloadTime > 0) {
+          setIsAuth(true);
+          await setTheUser(result.user);
+          
+          const timer = setTimeout(() => {
+            window.location.reload();
+            signOut();
+          }, reloadTime);
+  
+          return () => clearTimeout(timer);
+        } else {
+          signOut();
+        }
       } else {
         navigate("/sign-in");
       }
@@ -75,12 +95,6 @@ const AuthProvider = ({ children }) => {
   const signUp = async (username, handle, email, password) => {
     const result = await api.user.signUp(username, handle, email, password);
     return result;
-  };
-
-  const signOut = async () => {
-    api.user.signOut();
-    setIsAuth(false);
-    navigate("/sign-in");
   };
   
   const anon = async () => {
