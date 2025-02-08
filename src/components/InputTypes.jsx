@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import compStyles from "./components.module.css";
+import PropTypes from "prop-types";
 
 // types: 
 // - button0
@@ -64,3 +65,22 @@ const SearchBar = ({ placeholder, searchValue, setSearchValue }) => {
 };
 
 export { Button, TextArea, TextInput, SearchBar, LinkButton };
+
+Button.propTypes = {
+  type: PropTypes.string,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  submit: PropTypes.bool,
+};
+
+LinkButton.propTypes = {
+  type: PropTypes.string,
+  className: PropTypes.string,
+  to: PropTypes.string.isRequired,
+};
+
+SearchBar.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+  searchValue: PropTypes.string.isRequired,
+  setSearchValue: PropTypes.func.isRequired,
+};

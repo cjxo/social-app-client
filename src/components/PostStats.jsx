@@ -1,5 +1,6 @@
 import { useState } from "react";
 import compStyles from "./components.module.css";
+import PropTypes from "prop-types";
 
 import api from "../lib/api";
 
@@ -102,3 +103,19 @@ const PostStats = ({ post, userId }) => {
 };
 
 export default PostStats;
+
+// sp.id, sp.author_id, su.username AS author_name, sp.caption, sp.tags, sp.image_name, sp.image_type, sp.location, sp.created_at_ts
+PostStats.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    author_id: PropTypes.number.isRequired,
+    author_name: PropTypes.string.isRequired,
+    caption: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    image_name: PropTypes.string.isRequired,
+    image_type: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    created_at_ts: PropTypes.string.isRequired,
+  }).isRequired,
+  userId: PropTypes.number.isRequired,
+}

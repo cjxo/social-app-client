@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
+import PropTypes from "prop-types";
 import compStyles from "./components.module.css";
 import { TextArea, TextInput } from "./InputTypes";
 import api from "../lib/api";
@@ -65,7 +66,7 @@ const FileUploader = ({ post }) => {
   );
 };
 
-const PostForm = ({ action, post }) => {
+const PostForm = ({ post }) => {
   const navigate = useNavigate();
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -147,3 +148,17 @@ const PostForm = ({ action, post }) => {
 };
 
 export default PostForm;
+
+PostForm.propTypes = FileUploader.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    author_id: PropTypes.number.isRequired,
+    author_name: PropTypes.string.isRequired,
+    caption: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    image_name: PropTypes.string.isRequired,
+    image_type: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    created_at_ts: PropTypes.string.isRequired,
+  }).isRequired,
+};
